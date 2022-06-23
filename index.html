@@ -1189,7 +1189,7 @@ dreams
             
                         <div class="contactrow ">
                             <div class="col-lg-6 col-md-12">
-                                <form role="form" method="post" id="reused_form">
+                                <form role="form" method="post" id="reused_form my-form" action="https://formspree.io/f/mpzberjd">
                                     <div class="row">
                                         <div class="col-sm-12 form-group">
                                             <label class="Flabel" for="message"> Message:</label>
@@ -1208,9 +1208,10 @@ dreams
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 form-group ">
-                                            <button type="submit" class="btn btn-lg btn-default pull-right" >Send &rarr;</button>
+                                            <button type="submit" class="btn btn-lg btn-default pull-right" id="my-form-button" >Send &rarr;</button>
                                         </div>
                                     </div>
+                                    <p id="my-form-status"></p>
                                 </form>
                             </div>
                      
@@ -1320,5 +1321,37 @@ dreams
         
         
     </body>
+    <script>
+        var form = document.getElementById("my-form");
+        
+        async function handleSubmit(event) {
+          event.preventDefault();
+          var status = document.getElementById("my-form-status");
+          var data = new FormData(event.target);
+          fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+          }).then(response => {
+            if (response.ok) {
+              status.innerHTML = "Thanks for your submission!";
+              form.reset()
+            } else {
+              response.json().then(data => {
+                if (Object.hasOwn(data, 'errors')) {
+                  status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+                } else {
+                  status.innerHTML = "Oops! There was a problem submitting your form"
+                }
+              })
+            }
+          }).catch(error => {
+            status.innerHTML = "Oops! There was a problem submitting your form"
+          });
+        }
+        form.addEventListener("submit", handleSubmit)
+    </script>
 
 </html>
