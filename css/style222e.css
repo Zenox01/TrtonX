@@ -5,6 +5,14 @@ html {
     padding: 0;
     color:#ecdada !important;
 }
+#xtriton path {
+    stroke-linecap: square;
+    fill-opacity: 0;
+    transition: fill-opacity 1s;
+}
+#xtriton.finished * {
+  fill-opacity: 1;
+}
 
 html {
     font-family: sans-serif;
