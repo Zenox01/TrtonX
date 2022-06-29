@@ -1383,8 +1383,8 @@ html {
 
 @media(max-width:1024px) {
     .btn.red {
-        background: #ff5842;
-        border: 1px solid #ff5842;
+        background: #1770f3;
+        border: 1px solid #fff;
         color: #fff;
         opacity: 1 !important;
         font-size: 13px;
@@ -1442,8 +1442,8 @@ html {
 
 @media(max-width:1024px) {
     .btn.black_trans {
-        background: #ff5842;
-        border: 1px solid #ff5842;
+        background: #1973f6;
+        border: 1px solid #fff;
         color: #fff;
         opacity: 1 !important;
         font-size: 13px;
